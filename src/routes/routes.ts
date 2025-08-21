@@ -62,7 +62,7 @@ router.delete("/todo/:id", (req: Request, res: Response) => {
     }
 
     // deletar no banco (splice) e mandar status 200
-    const tarefa = tarefas[index];
+    const tarefa: number = tarefas[index];
     tarefas.splice(index, 1);
     res.status(200).send({
       mensagem: `Tarefa '${tarefa.descricao}' deletada com sucesso!`,
