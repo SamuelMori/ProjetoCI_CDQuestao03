@@ -64,3 +64,24 @@ describe("DELETE /todo/:id", () => {
     ]);
   });
 });
+
+// Novos testes
+describe("POST /todo (errors)", () => {
+  it("should return 400 if description is missing", async () => {
+    const response = await request.post("/todo").send({});
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      erro: "formato de requisição incorreto :(",
+    });
+  });
+});
+
+describe("DELETE /todo/:id (errors)", () => {
+  it("should return 404 if task does not exist", async () => {
+    const response = await request.delete("/todo/999");
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({
+      mensagem: "ID não encontrado!",
+    });
+  });
+});
